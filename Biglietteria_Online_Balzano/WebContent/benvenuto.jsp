@@ -1,4 +1,5 @@
 <%@include file="view_header.jsp" %>
+
 <%@ page import="dao.*" %>
 
 		<%! Clienti c = new Clienti(); %>
@@ -22,9 +23,11 @@
 				<div class="row bottoni">
 					<a href="visualizzaSpettacoli.jsp" class="btn btn-primary">Visualizza elenco spettacoli</a> 
 				</div>	
+				
 				<div class="row bottoni">
 					<a href="prenotaBiglietto.jsp" class="btn btn-primary">Prenota un biglietto</a> 
 				</div>	
+				
 				<div class="row bottoni">
 					<a href="visualizzaPrenotazioni.jsp"  class="btn btn-primary">Visualizza prenotazioni</a>
 				</div>	

@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import connessione.Connessione;
 
 public class Teatri{
@@ -131,6 +130,51 @@ public class Teatri{
 		
 		
 	}
+	
+	public ArrayList<ArrayList<Object>> visualizzaSpettacoliPerTeatro(){
+		
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT t.nome, s.titolo, s.autore, s.regista, s.prezzo, r.data_replica, r.cod_replica" +
+					 "FROM teatri t, spettacoli s, repliche r" +
+					 "WHERE t.cod_teatro = s.cod_teatro and s.cod_spettacolo = r.cod_spettacolo";
+		ArrayList<ArrayList<Object>> lista = new ArrayList<>();
+		
+		try{
+			stmt=bd.getConnessione().createStatement();
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				
+				//p = new Teatri(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7));
+				ArrayList<Object> dati = new ArrayList<>();
+				
+				dati.add(rs.getString(1));
+				dati.add(rs.getString(2));
+				dati.add(rs.getString(3));
+				dati.add(rs.getString(4));
+				dati.add(rs.getDouble(5));
+				dati.add(rs.getDate(6));
+				dati.add(rs.getString(7));
+				
+				lista.add(dati);
+			}
+			
+		}
+		
+		catch(SQLException e){
+			
+			e.printStackTrace();
+		}
+		
+		return lista;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	public Teatri trovaTeatro(String i){
 		

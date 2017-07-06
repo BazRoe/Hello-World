@@ -66,6 +66,14 @@ public class Biglietti{
 		this.tipoPagamento = tipoPagamento;
 		this.quantita = quantita;
 	}
+	
+//	INSERT into Biglietti (cod_cliente, cod_replica, data_ora, tipo_pagamento, quantita) values ('', '', '', '', '');
+//	
+//	SELECT * FROM biglietti where cod_cliente = '';
+//	
+//	
+//	
+//	SELECT count(*) FROM biglietti where cod_replica = R001;
 
 
 	public boolean inserisciBiglietto(){

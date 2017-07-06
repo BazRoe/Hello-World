@@ -9,8 +9,6 @@ import connessione.Connessione;
 
 public class Repliche{
 
-	Connessione bd = new Connessione();
-	
 	private String cod_replica = null;
 	private String cod_spettacolo = null;
 	private String data_replica = null;
@@ -56,35 +54,6 @@ public class Repliche{
 		this.data_replica = data_replica;
 	}
 
-	public ArrayList<Repliche> elencoRepliche(){
-		
-		Statement stmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT c.nome, b.titolo, a.data, a.cod_replica " +asd
-				"FROM `repliche` as a "+
-				"join spettacoli as b on a.cod_spettacolo=b.cod_spettacolo "+
-				"JOIN teatri as c ON b.cod_teatro=c.cod_teatro";
-		ArrayList<Repliche> lista = new ArrayList<>();
-		
-		try{
-			stmt=bd.getConnessione().createStatement();
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				
-				lista.add(new Repliche(rs.getString(1),rs.getString(2),rs.getString(3)));
-			}
-		}
-		
-		catch(SQLException e){
-			
-			e.printStackTrace();
-		}
-		
-		return lista;
-		
-		
-	}
-	
 
 //@Override
 //	public String toString() {

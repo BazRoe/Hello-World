@@ -9,8 +9,6 @@ import connessione.Connessione;
 
 public class Spettacoli{
 	
-	Connessione bd = new Connessione();
-	
 	private String cod_spettacolo = null;
 	private String titolo = null;
 	private String autore = null;
@@ -78,9 +76,9 @@ public class Spettacoli{
 		this.cod_teatro = cod_teatro;
 	}
 
-	public ArrayList<Spettacoli> elencoSpettacoli(){
+	public ArrayList<Spettacoli> elencoSpettacoli() throws SQLException{
 		
-		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM spettacoli";
@@ -98,6 +96,8 @@ public class Spettacoli{
 		catch(SQLException e){
 			
 			e.printStackTrace();
+		}finally{
+			bd.getConnessione().close();
 		}
 		
 		return lista;
@@ -105,8 +105,9 @@ public class Spettacoli{
 		
 	}
 	
-	public Spettacoli trovaSpettacoli(String i){
+	public Spettacoli trovaSpettacoli(String i) throws SQLException{
 		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM spettacoli  where cod_spettacolo =  " + i + "";
@@ -124,6 +125,8 @@ public class Spettacoli{
 		catch(SQLException e){
 			
 			e.printStackTrace();
+		}finally{
+			bd.getConnessione().close();
 		}
 		
 		return p;

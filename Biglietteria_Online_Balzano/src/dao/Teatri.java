@@ -12,7 +12,6 @@ public class Teatri{
 	public static final int POSTI_REGIO = 1592;		//T002
 	public static final int POSTI_ALFIERI = 1500;	//T003
 	
-	Connessione bd = new Connessione();
 	
 	private String cod_teatro = null;
 	private String nome = null;
@@ -81,7 +80,7 @@ public class Teatri{
 	
 	public Teatri(){}
 	
-	public Teatri(String cod_teatro){
+	public Teatri(String cod_teatro) throws SQLException{
 		
 		Teatri u = this.trovaTeatro(cod_teatro);
 		
@@ -105,8 +104,9 @@ public class Teatri{
 		this.posti = posti;
 	}
 
-	public ArrayList<Teatri> elencoTeatri(){
+	public ArrayList<Teatri> elencoTeatri() throws SQLException{
 		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM teatri";
@@ -124,19 +124,25 @@ public class Teatri{
 		catch(SQLException e){
 			
 			e.printStackTrace();
-		} 
+		}finally{
+			bd.getConnessione().close();
+		}
 		
 		return lista;
 		
 		
 	}
 	
-	public ArrayList<ArrayList<Object>> visualizzaSpettacoliPerTeatro(){
+	
+	
+	
+	public ArrayList<ArrayList<Object>> visualizzaSpettacoliPerTeatro() throws SQLException{
 		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT t.nome, s.titolo, s.autore, s.regista, s.prezzo, r.data_replica, r.cod_replica" +
-					 "FROM teatri t, spettacoli s, repliche r" +
+		String sql = "SELECT t.nome, s.titolo, s.autore, s.regista, s.prezzo, r.data_replica, r.cod_replica " +
+					 "FROM teatri t, spettacoli s, repliche r " +
 					 "WHERE t.cod_teatro = s.cod_teatro and s.cod_spettacolo = r.cod_spettacolo";
 		ArrayList<ArrayList<Object>> lista = new ArrayList<>();
 		
@@ -164,6 +170,8 @@ public class Teatri{
 		catch(SQLException e){
 			
 			e.printStackTrace();
+		}finally{
+			bd.getConnessione().close();
 		}
 		
 		return lista;
@@ -174,11 +182,9 @@ public class Teatri{
 	
 	
 	
-	
-	
-	public Teatri trovaTeatro(String i){
+	public Teatri trovaTeatro(String i) throws SQLException{
 		
-		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM teatri  where cod_teatro =  " + i + "";
@@ -197,6 +203,8 @@ public class Teatri{
 		catch(SQLException e){
 			
 			e.printStackTrace();
+		}finally{
+			bd.getConnessione().close();
 		}
 		
 		return p;

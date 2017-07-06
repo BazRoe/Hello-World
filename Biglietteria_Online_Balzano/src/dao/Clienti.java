@@ -9,8 +9,6 @@ import connessione.Connessione;
 
 public class Clienti{
 
-	Connessione bd = new Connessione();
-	
 	private String cod_cliente = null;
 	private String cognome = null;
 	private String nome = null;
@@ -60,7 +58,7 @@ public class Clienti{
 	
 	public Clienti(){}
 	
-	public Clienti(String cod_utente){
+	public Clienti(String cod_utente) throws SQLException{
 		
 		Clienti u = this.trovaCliente(cod_utente);
 		
@@ -82,8 +80,9 @@ public class Clienti{
 	
 	
 
-	public ArrayList<Clienti> elencoClienti(){
+	public ArrayList<Clienti> elencoClienti() throws SQLException{
 		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM clienti";
@@ -100,15 +99,18 @@ public class Clienti{
 		catch(SQLException e){
 			
 			e.printStackTrace();
-		} 
+		}finally{
+			bd.getConnessione().close();
+		}
 		
 		return lista;
 		
 		
 	}
 	
-	public Clienti trovaCliente(String i){
+	public Clienti trovaCliente(String i) throws SQLException{
 		
+		Connessione bd = new Connessione();
 		Statement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM clienti where cod_cliente = " + i + "";
@@ -127,6 +129,8 @@ public class Clienti{
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}finally{
+			bd.getConnessione().close();
 		}
 		
 		return p;

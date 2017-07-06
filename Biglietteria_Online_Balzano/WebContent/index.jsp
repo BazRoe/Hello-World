@@ -1,5 +1,10 @@
 <%@include file="view_header.jsp" %>
 
+		<% 
+			session.putValue("cliente", null);
+			
+		%>
+
 
 	<div class="row">
         <div class="col-lg-12 text-center">

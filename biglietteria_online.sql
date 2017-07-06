@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Lug 05, 2017 alle 17:58
+-- Creato il: Lug 06, 2017 alle 12:14
 -- Versione del server: 10.1.16-MariaDB
 -- Versione PHP: 7.0.9
 
@@ -34,6 +34,20 @@ CREATE TABLE `biglietti` (
   `tipo_pagamento` varchar(20) NOT NULL,
   `quantita` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dump dei dati per la tabella `biglietti`
+--
+
+INSERT INTO `biglietti` (`cod_operazione`, `cod_cliente`, `cod_replica`, `data_ora`, `tipo_pagamento`, `quantita`) VALUES
+(1, '0004', 'R003', '0000-00-00 00:00:00', 'Carta di credito', 5),
+(2, '0004', 'R003', '0000-00-00 00:00:00', 'Bonifico', 2),
+(3, '0004', 'R004', '2017-07-06 10:52:06', 'Bonifico', 4),
+(4, '0002', 'R005', '2017-07-06 10:54:23', 'Carta di credito', 2),
+(5, '0001', 'R003', '2017-07-06 11:13:19', 'Carta di credito', 1),
+(6, '0001', 'R003', '2017-07-06 11:14:40', 'Carta di credito', 1),
+(7, '0001', 'R001', '2017-07-06 11:30:15', 'Carta di credito', 1),
+(8, '0001', 'R003', '2017-07-06 11:59:19', 'Carta di credito', 1);
 
 -- --------------------------------------------------------
 
@@ -202,7 +216,7 @@ ALTER TABLE `teatri`
 -- AUTO_INCREMENT per la tabella `biglietti`
 --
 ALTER TABLE `biglietti`
-  MODIFY `cod_operazione` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `cod_operazione` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
